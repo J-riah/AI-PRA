@@ -1,0 +1,5 @@
+We are seeking a Software Engineer Intern with strong skills in Python, Java, and SQL.
+Frontend experience with HTML, CSS, and JavaScript is required.
+Familiarity with React, Node.js, and MongoDB (MERN stack) is a plus.
+Knowledge of machine learning, deep learning, TensorFlow or PyTorch, and scikit-learn will be valuable.
+Responsibilities include building REST APIs, writing clean code, collaborating with teams, and problem-solving.

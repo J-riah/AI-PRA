@@ -1,0 +1,22 @@
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Streamlit
+.streamlit/
+
+# SQLite database
+*.db
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store

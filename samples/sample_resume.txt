@@ -1,0 +1,19 @@
+JUWERIAH ABDUL RAHEEM
+Email: juweriahabdulraheem@gmail.com | LinkedIn: https://www.linkedin.com/in/juweriahabdulraheem
+
+SUMMARY
+Aspiring Software Engineer with experience in Python, Java, SQL, and MERN stack. Built projects in AI/ML and data analysis.
+
+SKILLS
+Python, Java, JavaScript, React, Node.js, Express, MongoDB, SQL, Git, HTML, CSS, Machine Learning, Deep Learning, Pandas, NumPy, TensorFlow, Scikit-learn, REST APIs, Docker (basic)
+
+EXPERIENCE
+- Built a Streamlit app for data visualization using Python and SQL.
+- Developed a MERN stack web app with authentication and CRUD operations.
+
+EDUCATION
+B.Tech in Computer Science (Expected 2026)
+
+PROJECTS
+- AI-Powered Resume Analyzer: Sentence-BERT based scoring between resume and job descriptions; SQLite history and Streamlit UI.
+- E-learning MERN Platform with AI Quiz Generator: React, Node, MongoDB, OpenAI integration for quiz creation.
