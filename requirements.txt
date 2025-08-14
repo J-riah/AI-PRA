@@ -1,7 +1,8 @@
 streamlit
-sentence-transformers
-scikit-learn
-PyPDF2
-python-docx
 pandas
 numpy
+scikit-learn
+sentence-transformers
+python-docx
+PyMuPDF
+sqlite3-binary
