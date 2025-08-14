@@ -2,6 +2,13 @@ import json
 import io
 from datetime import datetime
 
+import os
+from sentence_transformers import SentenceTransformer
+
+MODEL_NAME = "all-MiniLM-L6-v2"
+model = SentenceTransformer(MODEL_NAME, cache_folder="models")
+
+
 import streamlit as st
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
