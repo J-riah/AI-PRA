@@ -1,8 +1,9 @@
 streamlit
-pandas
-numpy
 scikit-learn
-sentence-transformers
-python-docx
-PyMuPDF
-sqlite3-binary
+numpy
+pandas
+PyPDF2
+spacy
+nltk
+sentence-transformers==2.2.2
+torch==2.0.1 --extra-index-url https://download.pytorch.org/whl/cpu
