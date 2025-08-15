@@ -85,9 +85,13 @@ streamlit run app.py
 
 ## 🖼️ Screenshots
 
-**Home Page**
-**Resume Analysis Output**
-**Keyword Suggestions**
+**AI-PRA**
+![AI-PRA](images/1.png)
+**Resume Analysis Input**
+![AI-PRA input](images/2.png)
+**Keyword Suggestions and AI-PRA output**
+![AI-PRA analysis](images/3.png)
+![AI-PRA analysis](images/4.png)
 
 
 ## 📜 License
