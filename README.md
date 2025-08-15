@@ -1,72 +1,101 @@
-# AI-PRA (AI-Powered Resume Analyzer)
+# 🧠 AI-Powered Resume Analyzer
 
-A **Streamlit** web app that scores how well a resume matches a given job description using **Sentence-BERT embeddings** and shows **missing keywords/skills**.  
-All analyses are saved in a local **SQLite** database for history and reporting.
+An AI-based web application that analyzes resumes against job descriptions to provide a **job-match score**, highlight missing keywords, and give actionable feedback for better ATS (Applicant Tracking System) optimization.
 
-## Tech
-- Python, Streamlit
-- NLP: sentence-transformers (`all-MiniLM-L6-v2`)
-- Similarity: cosine similarity
-- Keyword extraction: TF-IDF (1–2 grams)
-- Storage: SQLite
+## 🚀 Live Demo
+[Click here to try it!](https://ai-pra.streamlit.app/)
 
-## Quickstart
+---
+
+## 📌Features
+
+* **Resume Parsing**: Upload PDF/DOCX resumes and extract text.
+* **Job Match Scoring**: AI-powered similarity calculation using Sentence-BERT embeddings.
+* **Keyword Suggestions**: Highlights missing skills or keywords to improve ATS scores.
+* **User-Friendly Interface**: Clean, responsive Streamlit app.
+* **Database Storage**: Save analysis history using SQL.
+* **Fast Deployment**: Hosted on Streamlit Cloud for instant access.
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend & Deployment**
+
+* Streamlit
+
+**Backend & AI**
+
+* Python 3
+* Sentence-BERT (from `sentence-transformers`)
+* scikit-learn, NumPy, pandas
+
+**File Handling**
+
+* PyPDF2 (for PDF extraction)
+* python-docx (for DOCX extraction)
+
+**Database (Optional)**
+
+* SQLite / PostgreSQL
+
+---
+
+## 📂 Project Structure
+
+```
+AI-PRA/
+│
+├── app.py                # Main Streamlit application
+├── requirements.txt      # Project dependencies
+├── utils.py              # Helper functions (if used)
+├── sample_data/          # Sample resumes and job descriptions
+└── README.md             # Project documentation
+```
+
+---
+
+## ⚙️ Installation & Local Setup
 
 ```bash
-# 1) Clone or download this folder
-cd ai_resume_analyzer
+# Clone the repository
+git clone https://github.com/J-riah/AI-PRA.git
+cd AI-PRA
 
-# 2) Create and activate a virtualenv (recommended)
-python -m venv .venv
-# Windows:
-.venv\Scripts\activate
-# macOS/Linux:
-source .venv/bin/activate
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate   # On Windows: venv\Scripts\activate
 
-# 3) Install dependencies
+# Install dependencies
 pip install -r requirements.txt
 
-# 4) Run the app
+# Run the app locally
 streamlit run app.py
 ```
 
-Open the URL Streamlit prints (usually http://localhost:8501).
+---
 
-## Try it quickly
-Use the sample files in `samples/`:
-- `sample_resume.txt`
-- `sample_job_desc.txt`
+## How It Works
 
-## Database
-A local SQLite DB `resume_analyzer.db` is created automatically with a single table `analyses`.  
-Columns:
-- `id` (PK), `resume_text`, `job_desc`, `score`, `matched_keywords`, `missing_keywords`, `timestamp`, `file_name`
+1. **Upload Resume**: The app extracts text using PyPDF2 or python-docx.
+2. **Paste Job Description**: Users input the job description they want to match against.
+3. **AI Processing**: The app converts both texts into embeddings using Sentence-BERT.
+4. **Similarity Score**: Cosine similarity determines the match percentage.
+5. **Feedback**: Displays missing keywords and suggestions to improve the score.
 
-## Deploy on Streamlit Community Cloud
-1. Push this project to a **public GitHub repo**.
-2. Go to Streamlit Community Cloud.
-3. New app → point to your repo → set `app.py` as the entry file.
-4. Click Deploy.
+## 🖼️ Screenshots
 
-## Project Structure
-```
-ai_resume_analyzer/
-├─ app.py
-├─ modules/
-│  ├─ __init__.py
-│  ├─ parsing.py
-│  ├─ nlp_utils.py
-│  ├─ db.py
-│  └─ utils.py
-├─ samples/
-│  ├─ sample_resume.txt
-│  └─ sample_job_desc.txt
-├─ requirements.txt
-├─ README.md
-└─ .gitignore
-```
+**Home Page**
+**Resume Analysis Output**
+**Keyword Suggestions**
 
-## Notes
-- The app uses `all-MiniLM-L6-v2` which downloads on first run. That's normal.
-- If you want to switch models, edit `load_embedder()` in `app.py`.
-- You can export a single analysis as JSON from the UI.
+
+## 📜 License
+This project is open-source under the MIT License.
+
+---
+
+## 👩‍💻 Author
+**Juweriah Abdul Raheem Mohammed**
+📧 [juweriahabdulraheem@gmail.com](mailto:juweriahabdulraheem@gmail.com)
+🔗 [LinkedIn](https://www.linkedin.com/in/juweriahabdulraheem) | [GitHub](https://github.com/J-riah)

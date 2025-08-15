@@ -9,7 +9,6 @@ except ImportError:
     ])
     import torch
 
-
 import json
 import io
 from datetime import datetime
@@ -17,7 +16,6 @@ from datetime import datetime
 from sentence_transformers import SentenceTransformer
 MODEL_NAME = "all-MiniLM-L6-v2"
 model = SentenceTransformer(MODEL_NAME, cache_folder="models")
-
 
 import streamlit as st
 import numpy as np
@@ -28,13 +26,15 @@ from modules.db import init_db, insert_analysis, fetch_history
 from modules.utils import clean_text
 from modules.nlp_utils import get_top_keywords, normalize_keywords
 
+
 st.set_page_config(
     page_title="AI-PRA",
 )
 
+
+
 st.title("📄 AI-PRA (AI - Powered Resume Analyser)")
 st.caption("Upload your resume and paste a Job Description (JD). We'll compute a match score using sentence embeddings and highlight missing keywords.")
-
 
 @st.cache_resource(show_spinner=True)
 def load_embedder():
@@ -46,7 +46,6 @@ def embed_texts(model_name, texts):
     from sentence_transformers import SentenceTransformer
     model = SentenceTransformer(model_name)
     return model.encode(texts, show_progress_bar=False, normalize_embeddings=True)
-
 
 DB_PATH = "resume_analyzer.db"
 init_db(DB_PATH)
@@ -61,8 +60,6 @@ with st.sidebar:
             _id, score, ts, file_name = row
             st.write(f"**#{_id}** • {score:.1f} • {ts} • {file_name or 'N/A'}")
 
-
-
 uploaded = st.file_uploader("Upload Resume (PDF/DOCX/TXT)", type=["pdf", "docx", "txt"])
 jd_text = st.text_area("Paste Job Description (JD)", height=220, placeholder="Paste or type the job description here...")
 
@@ -71,9 +68,6 @@ with col1:
     topk = st.slider("How many top JD keywords to consider", 5, 40, 20, 1)
 with col2:
     analyze_btn = st.button("🔍 Analyze", type="primary")
-
-
-
 
 if analyze_btn:
     if uploaded is None:
@@ -90,11 +84,9 @@ if analyze_btn:
         st.error("Could not extract text from the uploaded file.")
         st.stop()
 
-    # clena and prep
     resume_text_clean = clean_text(resume_text)
     jd_text_clean = clean_text(jd_text)
 
-    # embeddings and similarity
     with st.spinner("Computing embeddings and similarity..."):
         model_name = 'all-MiniLM-L6-v2'
         embeddings = embed_texts(model_name, [resume_text_clean, jd_text_clean])
@@ -102,7 +94,6 @@ if analyze_btn:
         sim = float(cosine_similarity(resume_vec, jd_vec)[0][0])
         score_pct = max(0.0, min(100.0, sim * 100))
 
-    # Keyword extraction & gap analysis
     with st.spinner("Extracting keywords and finding gaps..."):
         jd_keywords_scored = get_top_keywords(jd_text_clean, top_k=topk)
         jd_keywords = [kw for kw, wt in jd_keywords_scored]
@@ -117,24 +108,22 @@ if analyze_btn:
             else:
                 missing.append(original_kw)
 
-    # Display results
     st.subheader("✅ Results")
     st.metric("Job Match Score", f"{score_pct:.1f}%")
-
     st.progress(score_pct / 100.0)
 
     c1, c2 = st.columns(2)
     with c1:
-        st.markdown("**Matched Keywords**")
+        st.markdown("**Matched Keywords**", unsafe_allow_html=True)
         if matched:
-            st.write(", ".join(sorted(set(matched))))
+            st.markdown(f"<p class='matched-keywords'>{', '.join(sorted(set(matched)))}</p>", unsafe_allow_html=True)
         else:
             st.write("_None matched_")
 
     with c2:
-        st.markdown("**Missing Keywords**")
+        st.markdown("**Missing Keywords**", unsafe_allow_html=True)
         if missing:
-            st.write(", ".join(sorted(set(missing))))
+            st.markdown(f"<p class='missing-keywords'>{', '.join(sorted(set(missing)))}</p>", unsafe_allow_html=True)
         else:
             st.write("_None missing_")
 
@@ -172,4 +161,3 @@ if analyze_btn:
 
 else:
     st.info("Upload a resume and paste a JD, then click **Analyze**.")
-
