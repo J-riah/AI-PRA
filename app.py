@@ -1,10 +1,20 @@
+import os
+import subprocess
+try:
+    import torch
+except ImportError:
+    subprocess.run([
+        "pip", "install", "torch==2.0.1+cpu", 
+        "-f", "https://download.pytorch.org/whl/torch_stable.html"
+    ])
+    import torch
+
+
 import json
 import io
 from datetime import datetime
 
-import os
 from sentence_transformers import SentenceTransformer
-
 MODEL_NAME = "all-MiniLM-L6-v2"
 model = SentenceTransformer(MODEL_NAME, cache_folder="models")
 

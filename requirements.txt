@@ -1,4 +1,3 @@
-pip>=25.2
 streamlit
 scikit-learn
 numpy
@@ -6,5 +5,4 @@ pandas
 PyPDF2
 spacy
 nltk
-sentence-transformers==2.2.2
-torch==2.0.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
+sentence-transformers
