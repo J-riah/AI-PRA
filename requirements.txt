@@ -3,7 +3,5 @@ scikit-learn
 numpy
 pandas
 PyPDF2
-spacy
-nltk
 sentence-transformers
 python-docx
